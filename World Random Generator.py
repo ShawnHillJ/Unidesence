@@ -405,20 +405,36 @@ def coord_plane_render_sort(direct, val, coords, prex, prey, prez):
     if direct == “-Z”:
         scene.addObject(val +“-Z”, “spawner”).worldPosition(x, y, z)
 def val_sort(val):
-    if val == -1:
-        return 
-    if val == 0:
     if val == 1:
+        return “Bedrock”
     if val == 2:
+        return “Water”
     if val == 3:
+        return “Grass”
     if val == 4:
+        return “Dirt”
     if val == 5:
+        return “Stone”
     if val == 6:
+        return “Coal”
     if val == 7:
+        return “Copper”
     if val == 8:
+        return “Tin”
     if val == 9:
-   if val == 10:
-   if val == 11:
+        return “Iron”
+    if val == 10:
+        return “Aluminium”
+    if val == 11:
+        return “Gold”
+    if val == 12:
+        return “Diamond”
+    if val == 13:
+        return “Emerald”
+    if val == 14:
+        return “Thyrumite”
+    if val == 15”
+        return “Dark Crystal”
 
 #
 def initial_render_list(WorldList, UnitList):
@@ -442,4 +458,3 @@ def initial_render_list(WorldList, UnitList):
                             coord_plane_render_sort("+Y", WorldList[i][y][x], coords, 2x, 2y, 2z)
                         if WorldList[i][y-1][x-8] !=0:
                             coord_plane_render_sort("-Y", WorldList[i][y][x], coords, 2x, 2y, 2z)
-
