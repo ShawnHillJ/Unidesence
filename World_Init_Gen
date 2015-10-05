@@ -1,0 +1,116 @@
+#World_Init_Gen
+#This builds a new world
+#made for starting a game
+
+import random
+import noise
+world_seed = random.randint(1000000,9999999)
+#import bge
+world_list = []
+
+#these are the chances for ores
+#to add an ore follow the format:
+#def ch_{insert_ore_here}(xvar, yvar, zvar, seed):
+#    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+
+def ch_iron(xvar, yvar, zvar, seed):
+    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+def ch_diamond(xvar, yvar, zvar):
+    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+def ch_dark_crystal(xvar, yvar, zvar):
+    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+def ch_aluminum(xvar, yvar, zvar):
+    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+def ch_tin(xvar, yvar, zvar):
+    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+def ch_thyrumite(xvar, yvar, zvar):
+    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+def ch_copper(xvar, yvar, zvar):
+    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+def ch_coal(xvar, yvar, zvar):
+    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+def ch_emerald(xvar, yvar, zvar):
+    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+def ch_ruby(xvar, yvar, zvar):
+    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+def ch_gold(xvar, yvar, zvar):
+    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+def ch_tree(xvar, yvar, seed):
+    return 5 < int(round(100000 * noise.pnoise2(xvar,yvar,0.5,2,1000*seed,1000*seed,seed)))
+
+tree_overlay = [[['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000']],
+                [['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000']],
+                [['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','018','030','030','030'],['000','000','000','030','030','000'],['000','000','000','030','030','000']],
+                [['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000']],
+                [['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000']]]
+
+#this generates one cell, 1000X1000X128 Blocks using these functions
+
+def init_cell(base, cmplxty, world_size, coords, biome, seed):
+    cell_list="["+str(coords)+"]"
+#initial layering
+    block_list=[]
+    for x in range(1000):
+        block_list_y=[]
+        for y in range(1000):
+            block_list_z=[]
+            point=noise.pnoise2(x,y, cmplxty, world_size, base)
+            top=round(point*64)
+            if top % 2 == 1:
+                top += 1
+            for z in range(-128, 128, 2):
+                if z in range(-126,-110,2) and ch_diamond(x, y, z, seed) > 7:
+                    block_list_z.append('014')
+                elif z in range(-126,top - 4, 2) and ch_dark_crystal(x,y,z,seed) > 7:
+                    block_list_z.append('016')
+                elif z in range(-126,-100, 2) and ch_emerald(x,y,z,seed) > 5:
+                    block_list_z.append('015')
+                elif z in range(-126,-118, 2) and ch_ruby(x,y,z,seed) > 6:
+                    block_list_z.append('031')
+                elif z in range(-126, top - 4, 2) and ch_coal(x,y,z,seed) > 5:
+                    block_list_z.append('006')
+                elif z in range(-126,-40, 2) and ch_gold(x,y,z,seed) > 5:
+                    block_list_z.append('011')
+                elif z in range(-126,top-4, 2) and ch_thyrumite(x,y,z,seed) > 4:
+                    block_list_z.append('012')
+                elif z in range(-126,top-4, 2) and ch_tin(x,y,z,seed) > 2:
+                    block_list_z.append('007')
+                elif z in range(-126,top-4, 2) and ch_aluminum(x,y,z,seed) > 4:
+                    block_list_z.append('012')
+                elif z in range(-126,top-4, 2) and ch_copper(x,y,z,seed) > 4:
+                    block_list_z.append('012')
+                elif z in range(-126,top-4, 2) and ch_iron(x,y,z,seed) > 4:
+                    block_list_z.append('012')
+                elif z in range(-126,top-4, 2):
+                    block_list_z.append('005')
+                elif z in range(top-2,top, 2):
+                    block_list_z.append('003')
+                elif z == top:
+                    block_list_z.append('004')
+                else:
+                    block-list_z.append('000')
+            block_list_y.append(block_list_z)
+        block_list.append(block_list_y)
+#Tree chance
+    for x in range(1000):
+        for y in range(1000):
+            if ch_tree(x, y, seed) == True:
+                z = block_list[x][y].index('004')+1
+                for g in range((-0.5)*(len(tree_overlay)), 0.5*len(tree_overlay)):
+                    for h in range((-0.5)*len(tree_overlay[g]), (0.5)*len(tree_overlay[g])):
+                        for j in range(0, tree_overlay[g][h]):
+                            block_list[x+g][y+h][z+j] = tree_overlay[g][h][j]
+            else:
+                pass
+#Finally, the finished string is pushed out of the function
+    return cell_list
+
+#writes the cell to a cell file
+
+def write_cell_list(the_list, filename):
+    open(filename, "w")
+    filename.write("vers alpha_1.0.0.0\n")
+    for item in the_list:
+        filename.write("%s/n" % item)
+    filename.write("]")
+    file.close
