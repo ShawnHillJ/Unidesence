@@ -15,7 +15,7 @@ World and Biome Generation + Player items and crafting + Story Updates + V1.0.0 
 
 
 +-------------
-MODULES
+#MODULES
 +-------------
 
 World_Init_Gen.py (to be replaced by world_gen.py by V0.5)
@@ -28,7 +28,7 @@ Player_Handler_s.py
 Enables health and inventory managment of the player in multiplayer. For Serverside multiplayer only.
 
 +-------------
-REQUESTS
+#REQUESTS
 +-------------
 '''
 Requests are ideas for the game with an intention of being part of the main game. All completed requests that will be included in beta testing will be listed here. 
@@ -42,7 +42,7 @@ Pending Beta Features:
 
 
 +-------------
-RESOURCES / SDK
+#RESOURCES / SDK
 +-------------
 '''
 Resources are files given as parts of the game that can be edited to produce modifications and updates. All resources, including script tutorials, videos, and script examples are listed here.
@@ -51,11 +51,11 @@ Resources are files given as parts of the game that can be edited to produce mod
 Personal Avatar:
     Link to default armature: https://drive.google.com/a/kernhigh.org/file/d/0BzSBfxmMf83KTEpwWU5LaTFJV2c/view?usp=sharing
     
-#This provides the default armature that a personal avatar should have.
+This provides the default armature that a personal avatar should have.
 
-TOOLS
+#TOOLS
 
-#These tools allow for the quick testing of individual parts of the game, such as avatar creation, enemy pathfinding, and other additions to the game without requiring editing the entire game.
+These tools allow for the quick testing of individual parts of the game, such as avatar creation, enemy pathfinding, and other additions to the game without requiring editing the entire game.
 
 -->World_Viewer.exe - TBA
 -->Avatar_Viewer.exe - TBA
