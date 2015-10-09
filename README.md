@@ -53,6 +53,9 @@ Personal Avatar:
     
 This provides the default armature that a personal avatar should have.
 
+Video tutorial on How to build a minecraft character (unofficial example to help):
+https://www.youtube.com/watch?v=Pd3diu6Lths
+
 #TOOLS
 
 These tools allow for the quick testing of individual parts of the game, such as avatar creation, enemy pathfinding, and other additions to the game without requiring editing the entire game.
