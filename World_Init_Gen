@@ -5,38 +5,37 @@
 import random
 import noise
 world_seed = random.randint(1000000,9999999)
-#import bge
 world_list = []
 
 #these are the chances for ores
 #to add an ore follow the format:
 #def ch_{insert_ore_here}(xvar, yvar, zvar, seed):
-#    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+#    return int(str(abs(noise.pnoise3(xvar*float,yvar*float,zvar*float,0_<_float_<_1,2,int,int,int,float_or_int))[int])
 
 def ch_iron(xvar, yvar, zvar, seed):
-    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+    return int(str(abs(noise.pnoise3(xvar*0.001,yvar*0.001,zvar*0.001,0.5,2,seed,seed,seed,seed)))[4])
 def ch_diamond(xvar, yvar, zvar):
-    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+    return int(str(abs(noise.pnoise3(xvar*0.001,yvar*0.001,zvar*0.001,0.5,2,seed,seed,seed,seed)))[4])
 def ch_dark_crystal(xvar, yvar, zvar):
-    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+    return int(str(abs(noise.pnoise3(xvar*0.001,yvar*0.001,zvar*0.001,0.5,2,seed,seed,seed,seed)))[4])
 def ch_aluminum(xvar, yvar, zvar):
-    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+    return int(str(abs(noise.pnoise3(xvar*0.001,yvar*0.001,zvar*0.001,0.5,2,seed,seed,seed,seed)))[4])
 def ch_tin(xvar, yvar, zvar):
-    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+    return int(str(abs(noise.pnoise3(xvar*0.001,yvar*0.001,zvar*0.001,0.5,2,seed,seed,seed,seed)))[4])
 def ch_thyrumite(xvar, yvar, zvar):
-    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+    return int(str(abs(noise.pnoise3(xvar*0.001,yvar*0.001,zvar*0.001,0.5,2,seed,seed,seed,seed)))[4])
 def ch_copper(xvar, yvar, zvar):
-    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+    return int(str(abs(noise.pnoise3(xvar*0.001,yvar*0.001,zvar*0.001,0.5,2,seed,seed,seed,seed)))[4])
 def ch_coal(xvar, yvar, zvar):
-    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+    return int(str(abs(noise.pnoise3(xvar*0.001,yvar*0.001,zvar*0.001,0.5,2,seed,seed,seed,seed)))[4])
 def ch_emerald(xvar, yvar, zvar):
-    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+    return int(str(abs(noise.pnoise3(xvar*0.001,yvar*0.001,zvar*0.001,0.5,2,seed,seed,seed,seed)))[4])
 def ch_ruby(xvar, yvar, zvar):
-    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+    return int(str(abs(noise.pnoise3(xvar*0.001,yvar*0.001,zvar*0.001,0.5,2,seed,seed,seed,seed)))[4])
 def ch_gold(xvar, yvar, zvar):
-    return int(round(100000 * noise.pnoise3(xvar,yvar,zvar,0.5,2,1000*seed,1000*seed,1000*seed,seed)))
+    return int(str(abs(noise.pnoise3(xvar*0.001,yvar*0.001,zvar*0.001,0.5,2,seed,seed,seed,seed)))[4])
 def ch_tree(xvar, yvar, seed):
-    return 5 < int(round(100000 * noise.pnoise2(xvar,yvar,0.5,2,1000*seed,1000*seed,seed)))
+    return 6 < int(str(abs(noise.pnoise2(xvar*0.001,yvar*0.001,0.5,2,seed,seed,seed)))[4])
 
 tree_overlay = [[['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000']],
                 [['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000']],
