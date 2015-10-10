@@ -14,9 +14,9 @@ World and Biome Generation + Player items and crafting + Story Updates + V1.0.0 
 
 
 
-+-------------
+
 #MODULES
-+-------------
+
 
 World_Init_Gen.py (to be replaced by world_gen.py by V0.5)
 Contains functions to build a world cell, write cell to a file, and functions determining chance of ores.
@@ -27,9 +27,9 @@ Enables health and inventory managment of the player in singleplayer. For Client
 Player_Handler_s.py
 Enables health and inventory managment of the player in multiplayer. For Serverside multiplayer only.
 
-+-------------
+
 #REQUESTS
-+-------------
+
 '''
 Requests are ideas for the game with an intention of being part of the main game. All completed requests that will be included in beta testing will be listed here. 
 '''
@@ -41,9 +41,9 @@ Pending Beta Features:
 
 
 
-+-------------
+
 #RESOURCES / SDK
-+-------------
+
 '''
 Resources are files given as parts of the game that can be edited to produce modifications and updates. All resources, including script tutorials, videos, and script examples are listed here.
 '''
