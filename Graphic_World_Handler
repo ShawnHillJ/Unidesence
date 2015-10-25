@@ -1,0 +1,4 @@
+#Graphic_World_Handler
+#This is the script which loaads the planes from cells.
+
+import bge
