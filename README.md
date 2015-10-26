@@ -60,6 +60,8 @@ Youtube Channel with a lot of tutorials on BGE: https://www.youtube.com/user/cgb
 
 Hey, here's a challenge, get all the questions right to get a surprise: https://docs.google.com/a/kernhigh.org/forms/d/1qZmiQOPRyRShp_QUFVscO0GT52F52nNOLXC8jVmdUd0/viewform?usp=send_form
 
+Run code online here: http://www.tutorialspoint.com/execute_python_online.php
+
 #TOOLS
 
 These tools allow for the quick testing of individual parts of the game, such as avatar creation, enemy pathfinding, and other additions to the game without requiring editing the entire game.
