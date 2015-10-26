@@ -7,12 +7,9 @@ The planned version changes will follow this order:
 
 World and Biome Generation + Player items and crafting + Story Updates + V1.0.0 Update
 
+#RELEASES
 
-
-
-
-
-
+Legacy: Early Alpha V1.5: https://drive.google.com/a/kernhigh.org/file/d/0BzSBfxmMf83KdEk3aGg1eExUVTA/view?usp=sharing
 
 
 #MODULES
