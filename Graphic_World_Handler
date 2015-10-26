@@ -8,6 +8,8 @@ default = False
 chunks = 64
 world_list = []
 
+def chunk_loader
+
 def chunk_sort(chunks1):
     total_chunks = chunks1
     for x in range(1,32):
