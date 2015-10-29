@@ -3,6 +3,8 @@ This is an Open-Source project coded in Python within the Blender Game Engine. T
 
 The main version of the game contains all modifications and approved additions to the main game. All beta features that are not implemented will exist in the beta branch until approved for push to main branch.
 
+NOTE: IN ORDER TO DOWNLOAD ANY FILES, MAKE SURE YOU ARE LOGGED INTO A KERN HIGH GOOGLE ACCOUNT!
+
 The planned version changes will follow this order:
 
 World and Biome Generation + Player items and crafting + Story Updates + V1.0.0 Update
