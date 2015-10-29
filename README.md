@@ -11,6 +11,8 @@ World and Biome Generation + Player items and crafting + Story Updates + V1.0.0 
 
 #RELEASES
 
+NOTE: PRESS THE DOWNLOAD ICON TO DOWNLOAD THE GAME!
+
 Legacy: Early Alpha V1.5: https://drive.google.com/a/kernhigh.org/file/d/0BzSBfxmMf83KdEk3aGg1eExUVTA/view?usp=sharing
 
 
