@@ -77,3 +77,9 @@ EXAMPLE SCRIPTS
 World_Init_Gen module
 Link: TBA
 
+#Weekend Challenge
+
+Spooky Message! Time for some 1337 haxors.
+Crack the Code to reveal the spooky message!
+It's encrypted using a Caesar Cipher, but we don’t know what number. Hmm... 
+“gdccym gqofm gyszshcbg gsbr gvwjsfg rckb mcif gdwbs”
