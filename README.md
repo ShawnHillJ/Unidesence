@@ -40,7 +40,7 @@ Pending Beta Features:
 2.
 3.
 
-
+Language of the Week Form: https://docs.google.com/a/kernhigh.org/forms/d/11DVxhPQLDtbB0F6yZEjcg_EYA9nvMineSVB7xlOMCOI/viewform?usp=send_form
 
 
 #RESOURCES / SDK
