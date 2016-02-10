@@ -1,4 +1,7 @@
 # Unidesence
+
+#***CURRENTLY IN MASS UPDATE FOR COMP ENTRY***
+
 This is an Open-Source project coded in Python within the Blender Game Engine. The player is given a randomized world to build and survive the relentless mobs that plague the realm. The user achieves this through a helpful companion named BlockBot, and together, the user can build a world his or her own.
 
 The main version of the game contains all modifications and approved additions to the main game. All beta features that are not implemented will exist in the beta branch until approved for push to main branch.
@@ -76,10 +79,3 @@ EXAMPLE SCRIPTS
 
 World_Init_Gen module
 Link: TBA
-
-#Weekend Challenge
-
-Spooky Message! Time for some 1337 haxors.
-Crack the Code to reveal the spooky message!
-It's encrypted using a Caesar Cipher, but we don’t know what number. Hmm... 
-“gdccym gqofm gyszshcbg gsbr gvwjsfg rckb mcif gdwbs”
