@@ -2,7 +2,7 @@
 
 #***CURRENTLY IN MASS UPDATE FOR COMP ENTRY***
 
-![Alt Text](https://github.com/ShawnHillJ/Unidesence/raw/master/path/to/image.gif)
+![Alt Text](https://github.com/ShawnHillJ/Unidesence/raw/master/Unidescencealphacoverv1.png)
 
 This is an Open-Source project coded in Python within the Blender Game Engine. The player is given a randomized world to build and survive the relentless mobs that plague the realm. The user achieves this through a helpful companion named BlockBot, and together, the user can build a world his or her own.
 
