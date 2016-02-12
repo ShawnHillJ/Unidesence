@@ -1,41 +1,43 @@
-#World_Init_Gen
-#This builds a new world
-#made for starting a game
-
-import random
-import noise
-world_seed = random.randint(1000000,9999999)
-world_list = []
-
-#these are the chances for ores
-#to add an ore follow the format:
-#def ch_{insert_ore_here}(xvar, yvar, zvar, seed):
-#    return int(str(abs(noise.pnoise3(xvar*float,yvar*float,zvar*float,0_<_float_<_1,2,int,int,int,float_or_int))[int])
+import perlin
+from math import pi
+pie = pi/17 #Tasty Pizza Pie!
 
 def ch_iron(xvar, yvar, zvar, seed):
-    return int(str(abs(noise.pnoise3(xvar*0.001,yvar*0.001,zvar*0.001,1,0.3,2,seed,seed,seed,seed)))[4])
+    pie = pi/13
+    return int(abs(perlin.SimplexNoise.noise3(perlin.BaseNoise,(xvar*pie)+seed,(yvar*pie)+seed,(zvar*pie)+seed))*100) < 1.75
 def ch_diamond(xvar, yvar, zvar, seed):
-    return int(str(abs(noise.pnoise3((xvar/130)+0.01,(yvar/130)+0.01,(zvar/130)+0.01,1,0.5,2,seed,seed,seed,seed)))[4])
+    pie = pi/51
+    return int(abs(perlin.SimplexNoise.noise3(perlin.BaseNoise,(xvar*pie)+seed,(yvar*pie)+seed,(zvar*pie)+seed))*100) < 0.875
 def ch_dark_crystal(xvar, yvar, zvar, seed):
-    return int(str(abs(noise.pnoise3((xvar/130)+0.01,(yvar/130)+0.01,(zvar/130)+0.01,1,0.5,2,seed,seed,seed,seed)))[4])
+    pie = pi/47
+    return int(abs(perlin.SimplexNoise.noise3(perlin.BaseNoise,(xvar*pie)+seed,(yvar*pie)+seed,(zvar*pie)+seed))*100) < 1
 def ch_aluminum(xvar, yvar, zvar, seed):
-    return int(str(abs(noise.pnoise3((xvar/130)+0.01,(yvar/130)+0.01,(zvar/130)+0.01,1,0.5,2,seed,seed,seed,seed)))[4])
+    pie = pi/37
+    return int(abs(perlin.SimplexNoise.noise3(perlin.BaseNoise,(xvar*pie)+seed,(yvar*pie)+seed,(zvar*pie)+seed))*100) < 1.75
 def ch_tin(xvar, yvar, zvar, seed):
-    return int(str(abs(noise.pnoise3((xvar/130)+0.01,(yvar/130)+0.01,(zvar/130)+0.01,1,0.5,2,seed,seed,seed,seed)))[4])
+    pie = pi/29
+    return int(abs(perlin.SimplexNoise.noise3(perlin.BaseNoise,(xvar*pie)+seed,(yvar*pie)+seed,(zvar*pie)+seed))*100) < 1.125
 def ch_thyrumite(xvar, yvar, zvar, seed):
-    return int(str(abs(noise.pnoise3((xvar/130)+0.01,(yvar/130)+0.01,(zvar/130)+0.01,1,0.5,2,seed,seed,seed,seed)))[4])
+    pie = pi/41
+    return int(abs(perlin.SimplexNoise.noise3(perlin.BaseNoise,(xvar*pie)+seed,(yvar*pie)+seed,(zvar*pie)+seed))*100) < 0.875
 def ch_copper(xvar, yvar, zvar, seed):
-    return int(str(abs(noise.pnoise3((xvar/130)+0.01,(yvar/130)+0.01,(zvar/130)+0.01,1,0.5,2,seed,seed,seed,seed)))[4])
+    pie = pi/43
+    return int(abs(perlin.SimplexNoise.noise3(perlin.BaseNoise,(xvar*pie)+seed,(yvar*pie)+seed,(zvar*pie)+seed))*100) < 1
 def ch_coal(xvar, yvar, zvar, seed):
-    return int(str(abs(noise.pnoise3((xvar/130)+0.01,(yvar/130)+0.01,(zvar/130)+0.01,1,0.5,2,seed,seed,seed,seed)))[4])
+    pie = pi/19
+    return int(abs(perlin.SimplexNoise.noise3(perlin.BaseNoise,(xvar*pie)+seed,(yvar*pie)+seed,(zvar*pie)+seed))*100) < 1
 def ch_emerald(xvar, yvar, zvar, seed):
-    return int(str(abs(noise.pnoise3((xvar/130)+0.01,(yvar/130)+0.01,(zvar/130)+0.01,1,0.5,2,seed,seed,seed,seed)))[4])
+    pie = pi/97
+    return int(abs(perlin.SimplexNoise.noise3(perlin.BaseNoise,(xvar*pie)+seed,(yvar*pie)+seed,(zvar*pie)+seed))*100) < 0.125
 def ch_ruby(xvar, yvar, zvar, seed):
-    return int(str(abs(noise.pnoise3((xvar/130)+0.01,(yvar/130)+0.01,(zvar/130)+0.01,1,0.5,2,seed,seed,seed,seed)))[4])
+    pie = pi/61
+    return int(abs(perlin.SimplexNoise.noise3(perlin.BaseNoise,(xvar*pie)+seed,(yvar*pie)+seed,(zvar*pie)+seed))*100) < 0.25
 def ch_gold(xvar, yvar, zvar, seed):
-    return int(str(abs(noise.pnoise3((xvar/130)+0.01,(yvar/130)+0.01,(zvar/130)+0.01,1,0.5,2,seed,seed,seed,seed)))[4])
+    pie = pi/83
+    return int(abs(perlin.SimplexNoise.noise3(perlin.BaseNoise,(xvar*pie)+seed,(yvar*pie)+seed,(zvar*pie)+seed))*100) < 0.75
 def ch_tree(xvar, yvar, seed):
-    return 6 < int(str(abs(noise.pnoise2((xvar/130)+0.01,(yvar/130)+0.01,1,0.5,2,seed,seed,seed)))[4])
+    pie = pi/11
+    return int(abs(perlin.SimplexNoise.noise2(perlin.BaseNoise,(xvar*pie)+seed,(yvar*pie)+seed))*100) < 1
 
 tree_overlay = [[['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000']],
                 [['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000']],
@@ -43,80 +45,67 @@ tree_overlay = [[['000','000','000','030','030','000'],['000','000','000','030',
                 [['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000']],
                 [['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000']]]
 
-#this generates one cell, 1000X1000X128 Blocks using these functions
-
-def init_cell(base, cmplxty, world_size, coords, biome, seed):
-    cell_list="["+str(coords)+"]"
+#this generates one cell, 100X100X200 Blocks using these functions
+def init_cell(player_position,seed):
+    locationxy = str(player_position.x) + "_" str(player_position.y)
 #initial layering
-    block_list=[]
+    block_list = []
     for x in range(1,10):
-        block_list_y=[]
+        block_list_y = []
         for y in range(1,10):
-            block_list_z=[]
-            point=noise.pnoise2(x,y, cmplxty, world_size, base)
-            top=round(point*64)
+            block_list_z = []
+            point = perlin.SimplexNoise.noise2(perlin.BaseNoise, x * pie, y * pie)
+            top=round(point * 64)
             if top % 2 == 1:
                 top += 1
-            for z in range(-128, 128, 2):
-                if z in range(-126,-110,2) and ch_diamond(x, y, z, seed) > 7:
+            for z in range(-100, 100, 2):
+                if z == -100:
+                    block_list_z.append('001')
+                elif z in range(-98,-86,2) and ch_diamond(x, y, z, seed) == True:
                     block_list_z.append('014')
-                elif z in range(-126,int(top - 4), 2) and ch_dark_crystal(x,y,z,seed) > 7:
+                elif z in range(-98,int(top - 4), 2) and ch_dark_crystal(x,y,z,seed) == True:
                     block_list_z.append('016')
-                elif z in range(-126,-100, 2) and ch_emerald(x,y,z,seed) > 5:
+                elif z in range(-98,-92, 2) and ch_emerald(x,y,z,seed) == True:
                     block_list_z.append('015')
-                elif z in range(-126,-118, 2) and ch_ruby(x,y,z,seed) > 6:
+                elif z in range(-98,-80, 2) and ch_ruby(x,y,z,seed) == True:
                     block_list_z.append('031')
-                elif z in range(-126,int(top - 4), 2) and ch_coal(x,y,z,seed) > 5:
+                elif z in range(-98,int(top - 4), 2) and ch_coal(x,y,z,seed) == True:
                     block_list_z.append('006')
-                elif z in range(-126,-40, 2) and ch_gold(x,y,z,seed) > 5:
+                elif z in range(-98,-50, 2) and ch_gold(x,y,z,seed) == True:
                     block_list_z.append('011')
-                elif z in range(-126,int(top-4), 2) and ch_thyrumite(x,y,z,seed) > 4:
+                elif z in range(-98,int(top-4), 2) and ch_thyrumite(x,y,z,seed) == True:
                     block_list_z.append('012')
-                elif z in range(-126,int(top-4), 2) and ch_tin(x,y,z,seed) > 2:
+                elif z in range(-98,int(top-4), 2) and ch_tin(x,y,z,seed) == True:
                     block_list_z.append('007')
-                elif z in range(-126,int(top-4), 2) and ch_aluminum(x,y,z,seed) > 4:
-                    block_list_z.append('012')
-                elif z in range(-126,int(top-4), 2) and ch_copper(x,y,z,seed) > 4:
-                    block_list_z.append('012')
-                elif z in range(-126,int(top-4), 2) and ch_iron(x,y,z,seed) > 4:
-                    block_list_z.append('012')
-                elif z in range(-126,int(top-4), 2):
+                elif z in range(-98,int(top-4), 2) and ch_aluminum(x,y,z,seed) == True:
+                    block_list_z.append('009')
+                elif z in range(-98,int(top-4), 2) and ch_copper(x,y,z,seed) == True:
+                    block_list_z.append('008')
+                elif z in range(-98,int(top-4), 2) and ch_iron(x,y,z,seed) == True:
+                    block_list_z.append('010')
+                elif z in range(-98,int(top-4), 2):
                     block_list_z.append('005')
-                elif z in range(int(top-2),int(top), 2):
+                elif z in range(int(top-4),int(top), 2):
                     block_list_z.append('003')
                 elif z == top:
                     block_list_z.append('004')
+                elif ch_tree(x,y,seed):
+                    z = block_list[x][y].index('004')+1
+                    for g in range(5):
+                        for h in range(5):
+                            for j in range(5):
+                                try:
+                                    block_list[x+g][y+h][z+j] = tree_overlay[g][h][j]
+                                except Exception:
+                                    pass
                 else:
                     block_list_z.append('000')
             block_list_y.append(block_list_z)
         block_list.append(block_list_y)
-#Tree chance
-    for x in range(9):
-        for y in range(9):
-            if ch_tree(x, y, seed) == True:
-#                print(block_list[x][y].index('004'))
-                z = block_list[x][y].index('004')+1
-                for g in range(5):
-                    for h in range(5):
-                        for j in range(5):
-                            try:
-                                block_list[x+g][y+h][z+j] = tree_overlay[g][h][j]
-                            except Exception:
-                                pass
-            else:
-                pass
-#Finally, the finished string is pushed out of the function
-    return cell_list
+#Finally, the finished string is pickled and stored for winter
+    write_cell_list(locationxy,block_list)
 
-#writes the cell to a cell file
-
-def write_cell_list(the_list, filename):
-    open(filename, "w")
-    filename.write("vers alpha_1.0.0.0\n")
-    for item in the_list:
-        filename.write("%s/n" % item)
-    filename.write("]")
-    file.close
-
-#init_cell(1, 2, 4, [0,0], 1, 5324)
-#print(world_list)
+#writes the cell to a pickle
+def write_cell_list(the_list):
+    import pickle
+    pickle.dump(this_list, open(str(the_list) + "supercell.p","wb"),2)
