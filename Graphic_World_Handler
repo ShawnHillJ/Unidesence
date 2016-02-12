@@ -1,6 +1,7 @@
 #Graphic_World_Handler
 #This is the script which loads the planes from cell files.
 import bge
+from math import floor
 cont = bge.logic.getCurrentController()
 obj = cont.owner
 scene = bge.logic.getCurrentScene()
@@ -14,10 +15,19 @@ Cell_Slot2 = []
 Cell_Slot3 = [] 
 Cell_Slot4 = []
 
-def chunk_loader(filename):
-    file.open(filename, "r")
+def chunk_loader(player_location):
+    import pickle
+    floored_x = str(floor(player_location.x))
+    floored_y = str(floor(player_location.y))
+    file_name = floored_x + "_" + floored_y + "supercell.p"
+    with open(file_name,"rb") as pickle_file:
+        pickle.load(pickle_file)
+        pickle_file.close
 
-def chunk_sort(chunks1):
+def cell_delete(locationxy):
+
+
+def cell_sort(chunks1):
     total_chunks = chunks1
     xrows = math.sqrt(total_chunks)
     yrows = math.sqrt(total_chunks)
@@ -36,30 +46,31 @@ def coord_plane_render_sort(direct, val, coords, prex, prey, prez):
     x = (coords - 7) + (prex * 2)
     y = (coords - 7) + (prey * 2) 
     z = -64 + (prez*2)
-    scene.addObject(val + direct, “spawner”).worldPosition(x, y, z)
+    scene.addObject(direct + val, “spawner”).worldPosition(x, y, z)
+
 def val_sort(val):
-    block_list = [Substratum, Water, Dirt, Grass, Stone, Coal, Tin, Copper, Aluminum, Iron, Gold, Thyrumite, Diamond, Emerald, Dark Crystal, Sand, Wood, Gravel, Clay, Ice, Obsidian, Clay Brick, Stone Brick, Cement, Glass, Granite, Sandstone, Leaves, Ruby]
-    return block_list[val]
+    block_list = {'005': 'Stone', '004': 'Grass', '010': 'Iron', '011': 'Gold', '012': 'Thyrumite', '014': 'Diamond', '015': 'Emerald', '016': 'Dark Crystal', '017': 'Sand', '018': 'Wood', '019': 'Gravel', '030': 'Ruby', '003': 'Dirt', '002': 'Water', '001': 'Substratum', '026': 'Glass', '021': 'Ice', '020': 'Clay', '023': 'Clay Brick', '022': 'Obsidian', '009': 'Aluminum', '008': 'Copper', '029': 'Leaves', '028': 'SandStone', '025': 'Cement', '024': 'Stone Bricks', '027': 'Granite', '007': 'Tin', '006': 'Coal'}
+    return block_list[str(val)]
 
 #This whole process must be revaluated due to change from 8 to 10 as chunk size
-def initial_render_list(WorldList, UnitList):
-    for i in range(len(WorldList)):
+def initial_render_list(WorldList):
+    for x in range(len(WorldList)):
         coords = UnitList[i]
         for y in range(len(WorldList[i])):
-            for x in range(len(WorldList[i][y])):
-                z = x//10
-                if WorldList[i][y][x] == "000":
+            for z in range(len(WorldList[i][y])):
+                i = x//10
+                if WorldList[x][y][z] == "000":
                     pass
                 else:
-                        if WorldList[i+1][y][x+1] == "000":
+                        if WorldList[x+1][y][z+1] == "000":
                             coord_plane_render_sort("+Z", WorldList[i][y][x], coords, 2*x, 2*y, 2z)
-                        if WorldList[i][y][x-1] == "000":
+                        if WorldList[x][y][z-1] == "000":
                            coord_plane_render_sort("-Z", WorldList[i][y][x], coords, 2*x, 2*y, 2*z)
-                        if WorldList[i+1][y][x] == "000":
+                        if WorldList[x+1][y][z] == "000":
                            coord_plane_render_sort("+X", WorldList[i][y][x], coords, 2*x, 2*y, 2*z)
-                        if WorldList[i-1][y][x] == "000":
+                        if WorldList[x-1][y][z] == "000":
                            coord_plane_render_sort("-X", WorldList[i][y][x], coords, 2*x, 2*y, 2*z)
-                        if WorldList[i][y+1][x] == "000":
+                        if WorldList[x][y+1][z] == "000":
                             coord_plane_render_sort("+Y", WorldList[i][y][x], coords, 2*x, 2*y, 2*z)
-                        if WorldList[i][y-1][x] == "000":
+                        if WorldList[x][y-1][z] == "000":
                             coord_plane_render_sort("-Y", WorldList[i][y][x], coords, 2*x, 2*y, 2*z)
