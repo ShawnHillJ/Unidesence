@@ -47,7 +47,16 @@ tree_overlay = [[['000','000','000','030','030','000'],['000','000','000','030',
 
 #this generates one cell, 100X100X100 Blocks using these functions
 def init_cell(cell_position,seed):
-    locationxy = str(int(cell_position.x * 100)) + "_" + str(int(cell_position.y * 100))
+    from math import floor,ceil,copysign
+    if cell_position.x >= 0:
+        next_x = ceil(cell_position.x / 100)
+    else:
+        next_x = floor(cell_position.x / 100)
+    if cell_position.y >= 0:
+        next_y = ceil(cell_position.y / 100)
+    else:
+        next_y = floor(cell_position.y / 100)
+    locationxy = str(next_x) + "_" + str(next_y)
 #initial layering
     block_list = []
     for x in range(100):
@@ -108,5 +117,9 @@ def init_cell(cell_position,seed):
 #writes the cell to a pickle
 def write_cell_list(location,this_list):
     import pickle
-    with open(str(location) + "supercell.p","wb") as gg:
-        pickle.dump(this_list, gg,2)
+    import os
+    script_dir = os.path.dirname(__file__)
+    rel_path = "Test_World/" + str(location) + "supercell.p"
+    abs_file_path = os.path.join(script_dir, rel_path)
+    with open(abs_file_path,"wb") as gg:
+        pickle.dump(this_list,gg,2)
