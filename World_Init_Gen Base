@@ -45,14 +45,14 @@ tree_overlay = [[['000','000','000','030','030','000'],['000','000','000','030',
                 [['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000']],
                 [['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000'],['000','000','000','030','030','000']]]
 
-#this generates one cell, 100X100X200 Blocks using these functions
-def init_cell(player_position,seed):
-    locationxy = str(player_position.x) + "_" str(player_position.y)
+#this generates one cell, 100X100X100 Blocks using these functions
+def init_cell(cell_position,seed):
+    locationxy = str(int(cell_position.x * 100)) + "_" + str(int(cell_position.y * 100))
 #initial layering
     block_list = []
-    for x in range(1,10):
+    for x in range(100):
         block_list_y = []
-        for y in range(1,10):
+        for y in range(100):
             block_list_z = []
             point = perlin.SimplexNoise.noise2(perlin.BaseNoise, x * pie, y * pie)
             top=round(point * 64)
@@ -89,15 +89,15 @@ def init_cell(player_position,seed):
                     block_list_z.append('003')
                 elif z == top:
                     block_list_z.append('004')
-                elif ch_tree(x,y,seed):
-                    z = block_list[x][y].index('004')+1
-                    for g in range(5):
-                        for h in range(5):
-                            for j in range(5):
-                                try:
-                                    block_list[x+g][y+h][z+j] = tree_overlay[g][h][j]
-                                except Exception:
-                                    pass
+                # elif z > top and ch_tree(x,y,seed):
+                #     z = block_list[x][y].index('004')+1
+                #     for g in range(5):
+                #         for h in range(5):
+                #             for j in range(5):
+                #                 try:
+                #                     block_list[x+g][y+h][z+j] = tree_overlay[g][h][j]
+                #                 except Exception:
+                #                     pass
                 else:
                     block_list_z.append('000')
             block_list_y.append(block_list_z)
@@ -106,6 +106,7 @@ def init_cell(player_position,seed):
     write_cell_list(locationxy,block_list)
 
 #writes the cell to a pickle
-def write_cell_list(the_list):
+def write_cell_list(location,this_list):
     import pickle
-    pickle.dump(this_list, open(str(the_list) + "supercell.p","wb"),2)
+    with open(str(location) + "supercell.p","wb") as gg:
+        pickle.dump(this_list, gg,2)
