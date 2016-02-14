@@ -1,76 +1,124 @@
 #Graphic_World_Handler
 #This is the script which loads the planes from cell files.
 import bge
-from math import floor
+from mathutils import Vector
+from math import ceil
 cont = bge.logic.getCurrentController()
 obj = cont.owner
 scene = bge.logic.getCurrentScene()
 default = False
 chunks = 100
 
-Player_Position = scene.objects["Player"].worldPosition
+player_position = scene.objects["Player"].worldPosition
 
-Cell_Slot1 = []
-Cell_Slot2 = []
-Cell_Slot3 = [] 
-Cell_Slot4 = []
 
-def chunk_loader(player_location):
+
+def load_cells():
     import pickle
-    floored_x = str(floor(player_location.x))
-    floored_y = str(floor(player_location.y))
-    file_name = floored_x + "_" + floored_y + "supercell.p"
-    with open(file_name,"rb") as pickle_file:
-        pickle.load(pickle_file)
-        pickle_file.close
+    import bge
+    from mathutils import Vector
+    from math import floor,ceil,copysign
+    cont = bge.logic.getCurrentController()
+    obj = cont.owner
+    scene = bge.logic.getCurrentScene()
+    import World_Init_Gen
+    player_location = scene.objects["Player"].worldPosition
+    try:
+        with open("cell_slot.p","rb") as buffa:
+            Cell_Slot = pickle.load(buffa)
+    except Exception:
+            Cell_Slot = [[],[],[],[]]
+    if player_location.x >= 0:
+        next_x = ceil(player_location.x / 100)
+    else:
+        next_x = floor(player_location.x / 100)
+    if player_location.y >= 0:
+        next_y = ceil(player_location.y / 100)
+    else:
+        next_y = floor(player_location.y / 100)
+    if next_x == 0:
+        next_x += 1
+    if next_y == 0:
+        next_y += 1
+    coord_list = [[next_x,next_y],[copysign(abs(next_x)-1, next_x),next_y],[next_x,copysign(abs(next_y)-1, next_y)],[copysign(abs(next_x)-1, next_x),copysign(abs(next_y)-1, next_y)]]
+    for p in range(4):
+        file_name = str(coord_list[p][0]) + "_" + str(coord_list[p][0]) + "supercell.p"
+        try:
+            pickle_file = open(file_name,"rb")            
+            pickle_list = pickle.load(pickle_file)
+            pickle_file.close()
+        except Exception:
+                World_Init_Gen.init_cell(Vector((next_x *100,next_y * 100)),next_x + next_y)
+        if pickle_list not in Cell_Slot:
+            for u in range(4):
+                if pickle_list != Cell_Slot[u]:
+                    Cell_Slot[u] = pickle_list
+                    break
+    for i in Cell_Slot:
+        render_list(i)
+    with open("cell_slot.p","wb") as final_write:
+        pickle.dump(Cell_Slot,final_write,2)
+        final_write.close()
 
-def cell_delete(locationxy):
+def cell_delete(slot_cell):
+    import bge
+    from mathutils import Vector
+    from math import ceil
+    cont = bge.logic.getCurrentController()
+    obj = cont.owner
+    scene = bge.logic.getCurrentScene()
+    from World_Init_Gen import write_cell_list
+    player_location = scene.objects["Player"].worldPosition
+    write_cell_list(slot_cell)
+    for x in slot_cell[1]:
+        for y in slot_cell[1][x]:
+            for z in slot_cell[1][x][y]:
+                for obj in scene.objects:
+                    if obj.worldPosition == Vector(((x*2)+(50*slot_cell[0][1]),(y*2)+(50*slot_cell[0][1]),((z*2)-100))):
+                        obj.endObject()
 
-
-def cell_sort(chunks1):
-    total_chunks = chunks1
-    xrows = math.sqrt(total_chunks)
-    yrows = math.sqrt(total_chunks)
-    Xoffset = xrows * (xrows - 1)
-    Yoffset = Xoffset
-#Now let's make the table list for chunks
-    Chunk_List = []
-    for i in range(1,total_chunks+1):
-        xcord = Xoffset + ((i % xrows) * 10)
-        ycord = Yoffset + ((i / yrows) // 1) * 10)
-        Chunk_List.append([xcord, ycord])
-    return Chunk_List
-
+#???----------------------------
+# def cell_sort(chunks1):
+#     total_chunks = chunks1
+#     xrows = math.sqrt(total_chunks)
+#     yrows = math.sqrt(total_chunks)
+#     Xoffset = xrows * (xrows - 1)
+#     Yoffset = Xoffset
+# #Now let's make the table list for chunks
+#     Chunk_List = []
+#     for i in range(1,total_chunks+1):
+#         xcord = Xoffset + ((i % xrows) * 10)
+#         ycord = Yoffset + ((i / yrows) // 1) * 10)
+#         Chunk_List.append([xcord, ycord])
+#     return Chunk_List
+#???-----------------------------
 
 def coord_plane_render_sort(direct, val, coords, prex, prey, prez):
-    x = (coords - 7) + (prex * 2)
-    y = (coords - 7) + (prey * 2) 
-    z = -64 + (prez*2)
-    scene.addObject(direct + val, “spawner”).worldPosition(x, y, z)
+    x = (int(coords[0][0]) * 50) + prex
+    y = (int(coords[0][1]) * 50) + prey
+    z = prez - 100
+    scene.addObject(direct + val_sort(val), "spawner").worldPosition = Vector((x, y, z))
 
 def val_sort(val):
     block_list = {'005': 'Stone', '004': 'Grass', '010': 'Iron', '011': 'Gold', '012': 'Thyrumite', '014': 'Diamond', '015': 'Emerald', '016': 'Dark Crystal', '017': 'Sand', '018': 'Wood', '019': 'Gravel', '030': 'Ruby', '003': 'Dirt', '002': 'Water', '001': 'Substratum', '026': 'Glass', '021': 'Ice', '020': 'Clay', '023': 'Clay Brick', '022': 'Obsidian', '009': 'Aluminum', '008': 'Copper', '029': 'Leaves', '028': 'SandStone', '025': 'Cement', '024': 'Stone Bricks', '027': 'Granite', '007': 'Tin', '006': 'Coal'}
     return block_list[str(val)]
 
 #This whole process must be revaluated due to change from 8 to 10 as chunk size
-def initial_render_list(WorldList):
+def render_list(WorldList):
+    coords = WorldList[0]
     for x in range(len(WorldList)):
-        coords = UnitList[i]
         for y in range(len(WorldList[i])):
             for z in range(len(WorldList[i][y])):
-                i = x//10
-                if WorldList[x][y][z] == "000":
-                    pass
-                else:
-                        if WorldList[x+1][y][z+1] == "000":
-                            coord_plane_render_sort("+Z", WorldList[i][y][x], coords, 2*x, 2*y, 2z)
-                        if WorldList[x][y][z-1] == "000":
-                           coord_plane_render_sort("-Z", WorldList[i][y][x], coords, 2*x, 2*y, 2*z)
-                        if WorldList[x+1][y][z] == "000":
-                           coord_plane_render_sort("+X", WorldList[i][y][x], coords, 2*x, 2*y, 2*z)
-                        if WorldList[x-1][y][z] == "000":
-                           coord_plane_render_sort("-X", WorldList[i][y][x], coords, 2*x, 2*y, 2*z)
-                        if WorldList[x][y+1][z] == "000":
-                            coord_plane_render_sort("+Y", WorldList[i][y][x], coords, 2*x, 2*y, 2*z)
-                        if WorldList[x][y-1][z] == "000":
-                            coord_plane_render_sort("-Y", WorldList[i][y][x], coords, 2*x, 2*y, 2*z)
+                if WorldList[x][y][z] != "000":
+                    if WorldList[x+1][y][z+1] == "000":
+                        coord_plane_render_sort("+Z", WorldList[i][y][x], coords, 2*x, 2*y, 2*z)
+                    if WorldList[x][y][z-1] == "000":
+                        coord_plane_render_sort("-Z", WorldList[i][y][x], coords, 2*x, 2*y, 2*z)
+                    if WorldList[x+1][y][z] == "000":
+                        coord_plane_render_sort("+X", WorldList[i][y][x], coords, 2*x, 2*y, 2*z)
+                    if WorldList[x-1][y][z] == "000":
+                        coord_plane_render_sort("-X", WorldList[i][y][x], coords, 2*x, 2*y, 2*z)
+                    if WorldList[x][y+1][z] == "000":
+                        coord_plane_render_sort("+Y", WorldList[i][y][x], coords, 2*x, 2*y, 2*z)
+                    if WorldList[x][y-1][z] == "000":
+                        coord_plane_render_sort("-Y", WorldList[i][y][x], coords, 2*x, 2*y, 2*z)
