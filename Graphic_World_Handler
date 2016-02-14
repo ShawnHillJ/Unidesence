@@ -14,6 +14,7 @@ player_position = scene.objects["Player"].worldPosition
 
 
 def load_cells():
+    import os
     import pickle
     import bge
     from mathutils import Vector
@@ -24,9 +25,13 @@ def load_cells():
     import World_Init_Gen
     player_location = scene.objects["Player"].worldPosition
     try:
-        with open("cell_slot.p","rb") as buffa:
-            Cell_Slot = pickle.load(buffa)
-    except Exception:
+        script_dir = os.path.dirname(__file__)
+        rel_path = "Test_World/cell_slot.p"
+        abs_file_path = os.path.join(script_dir, rel_path)
+        buffa = open(abs_file_path,"rb")
+        Cell_Slot = pickle.load()
+        buffa.close()
+    except IOError:
             Cell_Slot = [[],[],[],[]]
     if player_location.x >= 0:
         next_x = ceil(player_location.x / 100)
@@ -44,11 +49,16 @@ def load_cells():
     for p in range(4):
         file_name = str(coord_list[p][0]) + "_" + str(coord_list[p][0]) + "supercell.p"
         try:
-            pickle_file = open(file_name,"rb")            
+            print(file_name)
+            script_dir = os.path.dirname(__file__)
+            rel_path = "Test_World/" + file_name
+            abs_file_path = os.path.join(script_dir, rel_path)
+            pickle_file = open(abs_file_path,"rb")
             pickle_list = pickle.load(pickle_file)
             pickle_file.close()
-        except Exception:
-                World_Init_Gen.init_cell(Vector((next_x *100,next_y * 100)),next_x + next_y)
+        except IOError:
+            print("HI")
+            World_Init_Gen.init_cell(Vector((next_x *100,next_y * 100)),next_x + next_y)
         if pickle_list not in Cell_Slot:
             for u in range(4):
                 if pickle_list != Cell_Slot[u]:
